@@ -27,6 +27,16 @@ def menu() -> None:
 
     opcao: int = int(input())
 
+    if opcao == 1:
+        cadastrar_produto()
+    elif opcao == 2:
+        listar_produtos()
+    elif opcao == 3:
+        comprar_produto()
+    elif opcao == 4:
+        visualizar_carrinho()
+
+
 
 
 
