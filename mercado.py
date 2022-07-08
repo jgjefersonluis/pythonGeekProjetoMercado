@@ -1,9 +1,4 @@
-
-
-
-
-
-
+from models.produto import Produto
 
 produtos: List[Produto] = []
 carrinho: List[Dict[Produto, int]] = []
@@ -73,6 +68,52 @@ def listar_produtos() -> None:
         print('Ainda não existem produtos cadastrados.')
     sleep(2)
     menu()
+
+def comprar_produto() -> None:
+    if len(produtos) > 0:
+        print('Informe o código do produto que deseja adicionar ao carrinho: ')
+        print('------------------------------------------------------------------')
+        print('================ Produtos Disponíveis ==================================')
+        for produto in produtos:
+            print(produto)
+            print('----------------------------------------------------------')
+            sleep(1)
+        codigo: int = int(input())
+
+        produto: Produto = pega_produto_por_codigo(codigo)
+
+        if produto:
+            if len(carrinho) > 0:
+                tem_no_carrinho: bool = False
+                for item in carrinho:
+                    quant: int = item.get(produto)
+                    if quant:
+                        item[produto] = quant + 1
+                        print(f'O produto {produto.nome} agora possui {quant + 1} unidades no carrinho.')
+                        tem_no_carrinho = True
+                        sleep(2)
+                        menu()
+                    if not tem_no_carrinho:
+                        prod = {produto: 1}
+                        carrrinho.append(prod)
+                        print(f'O produto {produto.nome} foi adicionado ao carrinho.')
+                        sleep(2)
+                        menu()
+                else:
+                    item = {produto: 1}
+                    carrinho.append(item)
+                    print(f'O produto {produto.nome} foi adicionado ao carrinho.')
+                    sleep(2)
+                    menu()
+            else:
+                print(f'O produto com código {codigo} não foi encontrado.')
+                sleep(2)
+                menu()
+        else:
+            print('Ainda não existem produtos para vender.')
+        sleep(2)
+        menu()
+
 
 
 
