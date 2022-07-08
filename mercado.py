@@ -1,3 +1,5 @@
+from time import sleep
+from typing import List, Dict
 from models.produto import Produto
 
 produtos: List[Produto] = []
@@ -95,7 +97,7 @@ def comprar_produto() -> None:
                         menu()
                     if not tem_no_carrinho:
                         prod = {produto: 1}
-                        carrrinho.append(prod)
+                        carrinho.append(prod)
                         print(f'O produto {produto.nome} foi adicionado ao carrinho.')
                         sleep(2)
                         menu()
@@ -128,6 +130,29 @@ def visualizar_carrinho()-> None:
         print('Ainda não existem produtos no carrinho.')
         sleep(2)
         menu()
+
+def fechar_pedido() -> None:
+    if len(carrinho) > 0:
+        valor_total: float = 0
+
+        print('Produtos do Carrinho')
+        for item in carrinho:
+            for dados in item.items():
+                print(dados[0])
+                print(f'Quantidade: {dados[1]}')
+                valor_total += dados[0].preco * dados[1]
+                print('--------------------------------')
+                sleep(1)
+        print(f'Sua fatura é {formata_float_str_moeda(valor_total)}')
+        print('Volte sempre!')
+        carrinho.clear()
+        sleep(5)
+    else:
+        print('Ainda não existem produtos no carrinho.')
+    sleep(2)
+    menu()
+
+
 
 
 
