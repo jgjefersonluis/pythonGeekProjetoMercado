@@ -35,6 +35,48 @@ def menu() -> None:
         comprar_produto()
     elif opcao == 4:
         visualizar_carrinho()
+    elif opcao == 5:
+        fechar_pedido()
+    elif opcao == 6:
+        print('Volter sempre!')
+        sleep(2)
+        exit(0)
+    else:
+        print('Opção inválida!')
+        sleep(1)
+        menu()
+
+def cadastrar_produto() -> None:
+    print('Cadastro de Produto')
+    print('===================')
+
+    nome: str = input('Informe o nome do produto: ')
+    preco: float = float(input('Informe o preço do produto:'))
+
+    produto: Produto = Produto(nome, preco)
+
+    produtos.append(produto)
+
+    print(f'O produto{produto.nome} foi cadastrado com sucesso!')
+    sleep(2)
+    menu()
+
+def listar_produtos() -> None:
+    if len(produtos) > 0:
+        print('Listagem de produtos')
+        print('--------------------')
+        for produto in produtos:
+            print(produto)
+            print('----------------')
+            sleep(1)
+    else:
+        print('Ainda não existem produtos cadastrados.')
+    sleep(2)
+    menu()
+
+
+
+
 
 
 
