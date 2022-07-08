@@ -114,6 +114,29 @@ def comprar_produto() -> None:
         sleep(2)
         menu()
 
+def visualizar_carrinho()-> None:
+    if len(carrinho) > 0:
+        print('Produtos no carrinho: ')
+
+        for item in carrinho:
+            for dados in item.items():
+                print(dados[0])
+                print(f'Quantidade: {dados[1]}')
+                print('-----------------------')
+                sleep(1)
+    else:
+        print('Ainda não existem produtos no carrinho.')
+        sleep(2)
+        menu()
+
+
+
+
+
+
+
+
+
 
 
 
