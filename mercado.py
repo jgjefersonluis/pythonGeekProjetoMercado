@@ -1,6 +1,7 @@
 from time import sleep
 from typing import List, Dict
 from models.produto import Produto
+from utils.helper import formata_float_str_moeda
 
 produtos: List[Produto] = []
 carrinho: List[Dict[Produto, int]] = []
@@ -152,43 +153,13 @@ def fechar_pedido() -> None:
     sleep(2)
     menu()
 
+def pegar_produto_por_codigo(codigo: int) -> Produto:
+    p: Produto = None
 
+    for produto in produtos:
+        if produto.codigo == codigo:
+            p = produto
+    return p
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    main()
